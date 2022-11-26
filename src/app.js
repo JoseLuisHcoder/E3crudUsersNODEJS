@@ -8,7 +8,7 @@ const port = 9000;
 const app = express();
 
 app.use(express.json())
-app.use('/', userRouter)
+app.use('/api/v1', userRouter)
 
 db.authenticate()
     .then(() => {
