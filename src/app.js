@@ -8,25 +8,25 @@ const port = 9000;
 const app = express();
 
 app.use(express.json())
-app.use('/api/v1', userRouter)
 
 db.authenticate()
-    .then(() => {
-        console.log('Database Authenticate');
+.then(() => {
+    console.log('Database Authenticate');
     })
     .catch((err) => {
         console.log(err);
     })
-
-db.sync()
+    
+    db.sync()
     .then(()=> {
         console.log('Database Synced');
     })
     .catch((err) => {
         console.log(err);
     })
-
-
+    
+    app.use('/api/v1', userRouter)
+    
 
 app.get('/', (req, res) => {
     res.status(200).json({message: 'Ok!'})

@@ -27,21 +27,27 @@ const getUserById = (req, res) => {
 }
 
 const postUser = (req, res) => {
-    const {firstName, lastName, email, password} = req.body
-    userControllers.createUser({firstName, lastName, email, password})
+    const {firstName, lastName, email, password, birthday} = req.body
+    userControllers.createUser({firstName, lastName, email, password, birthday})
         .then((data) => {
             res.status(201).json(data)
         })
         .catch(err => {
-            res.status(400).json({message:err.message})
+            res.status(400).json({message:err.message, fields: {
+                firstName: 'String',
+                lastName: 'String',
+                email: 'example@example.com',
+                password: 'String',
+                birthday: 'YYYY/MM/DD'
+            }})
         })
 
 }
 
 const patchUser = (req, res) => {
     const id = req.params.id
-    const {firstName, lastName, email, password} = req.body
-    userControllers.updateUser(id, {firstName, lastName, email, password})
+    const {firstName, lastName, email, password,birthday} = req.body
+    userControllers.updateUser(id, {firstName, lastName, email, password, birthday})
         .then((data) => {
             if(data){
                 res.status(200).json({message:'User updated succesfully with id'})

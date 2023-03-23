@@ -39,7 +39,8 @@ const Users = db.define('users', {
 
     },
     birthday:{
-        type:DataTypes.DATE
+        type:DataTypes.DATE,
+        
     }
 }, {
     timestamps:false
